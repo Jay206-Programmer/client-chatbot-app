@@ -35,13 +35,29 @@ html,body{
   overflow-y: hidden;
 }
 
-.react-chatbot-kit-chat-bot-message-container{
+.react-chatbot-kit-chat-bot-message-container,.react-chatbot-kit-user-chat-message-container{
   padding: 0px 10px;
+}
+
+.react-chatbot-kit-chat-bot-message,.react-chatbot-kit-user-chat-message{
+  max-width: 60%;
 }
 
 .react-chatbot-kit-chat-bot-message{
   margin-left: 0px;
 }
+
+.react-chatbot-kit-chat-input-form{
+  min-height: 8vh;
+}
+
+.react-chatbot-kit-chat-input{
+  font-size: 2.5vh;
+}
+.react-chatbot-kit-chat-input:active{
+  border-color: blue;
+}
+
 
 @media (max-width: 480) {
   .react-chatbot-kit-chat-header{

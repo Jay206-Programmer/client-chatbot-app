@@ -14,6 +14,7 @@ function App() {
         config={config}
         messageParser={MessageParser}
         actionProvider={ActionProvider}
+        headerText='Database Assistant'
       />
       {/* </header> */}
     </div>
