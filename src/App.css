@@ -78,6 +78,11 @@ html,body{
   border-color: blue;
 }
 
+.react-chatbot-kit-chat-input-container{
+  position: fixed;
+  bottom: 0;
+  width: 80%;
+}
 
 @media (max-width: 768px) {
   
@@ -103,5 +108,9 @@ html,body{
   .react-chatbot-kit-chat-bot-message,.react-chatbot-kit-user-chat-message{
     font-size: 2.5vh;
   }
-  
+
+  .react-chatbot-kit-chat-input-container{
+    width: 100%;
+  }
+
 }
