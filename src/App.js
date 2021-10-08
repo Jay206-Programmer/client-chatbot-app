@@ -8,7 +8,8 @@ import ActionProvider from "./bot/ActionProvider.js";
 
 function App() {
   return (
-    <div>
+    <div class="main-container">
+      <div class="sidebar">Hi</div>
       {/* <header className="App-header"> */}
       <Chatbot
         config={config}
