@@ -6,8 +6,8 @@
 
 html,body{
   background-color: #282c34;
-  /* min-height: 100vh; */
-  min-height: -webkit-fill-available;
+  min-height: 100vh;
+  /* min-height: -webkit-fill-available; */
 }
 
 .main-container {
@@ -20,9 +20,32 @@ html,body{
   width:20%;
   /* background-color: #a0a0a0; */
   background-color: #2898ec;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.image-container{
+  display: flex;
+  justify-content: center;
+}
+.image-container > img{
+  color: #fff;
+}
+
+.intro-container{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.intro-container > div > h3{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 2.5vw;
+  text-align: center;
 }
 
 .react-chatbot-kit-chat-container {
