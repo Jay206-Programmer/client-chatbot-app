@@ -12,12 +12,14 @@ html,body{
 .react-chatbot-kit-chat-container {
   min-width: 100%;
   min-height: 100vh;
+  border-radius: 0px;
 }
 
 .react-chatbot-kit-chat-inner-container{
-  height: 100vh;
+  height: 92vh;
   margin-bottom: 0px;
 }
+
 
 .react-chatbot-kit-chat-header{
   min-height: 10vh;
@@ -29,10 +31,10 @@ html,body{
 }
 
 .react-chatbot-kit-chat-message-container{
-  height: 90vh;
+  height: 85vh;
   padding: 0px;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 .react-chatbot-kit-chat-bot-message-container,.react-chatbot-kit-user-chat-message-container{
