@@ -1,7 +1,7 @@
 import Chatbot from "react-chatbot-kit";
 import "react-chatbot-kit/build/main.css";
 import "./App.css";
-import cb_logo from "./1540869642.png";
+// import cb_logo from "./1540869642.png";
 
 import config from "./bot/config.js";
 import MessageParser from "./bot/MessageParser.js";
