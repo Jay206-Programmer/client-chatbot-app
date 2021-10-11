@@ -13,17 +13,14 @@ class ActionProvider {
   }
 
   warn() {
-    this.updateChatbotState(
-      this.createChatbotMessage("Empty input received!")
-    );
+    this.updateChatbotState(this.createChatbotMessage("Empty input received!"));
   }
 
   async handleQuery(msg) {
-    
     // this.updateChatbotState(
     //   this.createChatbotMessage("Getting From the Database...")
     // );
-    
+
     await axios
       .post("http://localhost:8000/parse_query", {
         sentence: msg,
@@ -47,12 +44,34 @@ class ActionProvider {
       });
   }
 
+  // createClientMesssage = (message) => {
+  //   const clientMessage = {
+  //     message: message,
+  //     type: "user",
+  //     id: new Date(),
+  //   };
+
+  //   return clientMessage;
+  // };
+
+  setClientMessage = (message) => {
+    this.setState((prevState) => ({
+      ...prevState,
+      messages: [...prevState.messages, message],
+    }));
+  };
   updateChatbotState(message) {
     this.setState((prevState) => ({
       ...prevState,
       messages: [...prevState.messages, message],
     }));
   }
+
+  speechRecognizeInput = (message) => {
+    const clientMessage = this.createClientMessage(message);
+    this.setClientMessage(clientMessage);
+    this.handleQuery(message);
+  };
 }
 
 export default ActionProvider;

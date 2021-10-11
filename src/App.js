@@ -1,14 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import classNames from "classnames";
 
-import Chatbot from "react-chatbot-kit";
+import {Chatbot, createClientMessage} from "react-chatbot-kit";
 import "react-chatbot-kit/build/main.css";
 import "./App.css";
 import cb_logo from "./Allegro-MicroSystems-H-Tagline-TM-CMYK.jpg";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
+
 import config from "./bot/config.js";
 import MessageParser from "./bot/MessageParser.js";
 import ActionProvider from "./bot/ActionProvider.js";
+
+// ? Mic
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+const mic = new SpeechRecognition();
+
+mic.continuous = true;
+mic.interimResults = true;
+mic.lang = "en-US";
 
 function App() {
   // ? Demo messages
@@ -24,6 +36,61 @@ function App() {
   const [islistening, setListening] = useState(false);
   const [demonote, setDemoNote] = useState(getDemoMsg);
   const [darkmode, setDarkMode] = useState(false);
+
+  const [note, setNote] = useState(null);
+
+  useEffect(() => {
+    handleListen();
+  }, [islistening]);
+
+  const handleListen = () => {
+    if (islistening) {
+      mic.start();
+      mic.onend = () => {
+        // console.log("continue..");
+        mic.start();
+      };
+    } else {
+      mic.stop();
+      mic.onend = () => {
+        // console.log("Stopped Mic on Click");
+      };
+    }
+    mic.onstart = () => {
+      // console.log("Mics on");
+    };
+
+    mic.onresult = (event) => {
+      const transcript = Array.from(event.results)
+        .map((result) => result[0])
+        .map((result) => result.transcript)
+        .join("");
+      // console.log(transcript);
+      setNote(transcript);
+      mic.onerror = (event) => {
+        console.log(event.error);
+      };
+    };
+  };
+
+  const handleSaveNote = () => {
+    setListening(!islistening);
+    if (!islistening) {
+      // let ap = new ActionProvider();
+      // ap.userMessage(note);
+      // ap.speechRecognizeInput(note);
+      setNote("");
+    }
+  };
+  const handleCancelNote = () => {
+    setListening(!islistening);
+    setNote("");
+  };
+
+  const validator = (input) => {
+    if (input.length > 1 && !islistening) return true;
+    return false;
+  };
 
   return (
     <div class={classNames("main-container", { dark: darkmode })}>
@@ -50,14 +117,16 @@ function App() {
         messageParser={MessageParser}
         actionProvider={ActionProvider}
         headerText="Allegro Assistant"
+        validator={validator}
       />
+      {islistening && <div className="speech-rec-div">{note}</div>}
       <div
         className={classNames("mic-container", { "is-listening": islistening })}
       >
         {islistening && (
           <button
             className={classNames("cross-button")}
-            onClick={() => setListening(!islistening)}
+            onClick={handleCancelNote}
           >
             ❌
           </button>
@@ -66,9 +135,9 @@ function App() {
           className={classNames("mic-button", {
             "mic-is-listening": islistening,
           })}
-          onClick={() => setListening(!islistening)}
+          onClick={handleSaveNote}
         >
-          {!islistening ? "🎙" : "✔"}
+          {!islistening ? <FontAwesomeIcon icon={faMicrophone} /> : "✔"}
         </button>
       </div>
       {/* </header> */}
