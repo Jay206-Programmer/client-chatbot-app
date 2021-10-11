@@ -138,6 +138,7 @@ html,body{
 .react-chatbot-kit-chat-bot-message,.react-chatbot-kit-user-chat-message{
   max-width: 60%;
   width: fit-content;
+  font-family: 'Poppins', sans-serif;
 }
 
 .react-chatbot-kit-chat-bot-message{
