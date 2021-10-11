@@ -35,13 +35,14 @@ html,body{
   background-color: var(--color-primary);
   min-height: 100vh;
   /* min-height: -webkit-fill-available; */
+  overflow: hidden;
 }
 
 .main-container {
   width: 100%;
   display: flex;
   flex-direction: row;
-  transition: background-color 1000ms linear;
+  transition: background-color 1s linear;
 }
 
 .sidebar{
@@ -109,6 +110,50 @@ html,body{
   font-size: 20px;
 }
 
+.mic-container{
+  position: absolute;
+  top: 96%;
+  right: 100px;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  transition: height 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 8vh;
+}
+.mic-button{
+  border: None;
+  background-color: transparent;
+  font-size: 6vh;
+  transition: color 0.2s linear;
+  color: var(--header-text-primary);
+  cursor: pointer;
+}
+.mic-button:hover{
+  color: var(--color-primary);
+}
+
+.cross-button{
+  border: None;
+  background-color: transparent;
+  font-size: 3vh;
+  transition: color 0.15s linear;
+  color: var(--header-primary);
+  margin: 1.5vh;
+  cursor:pointer;
+}
+.is-listening{
+  height: 16vh;
+  top: 92%;
+  color: rgb(45, 185, 45);
+}
+.mic-is-listening{
+  font-size: 3vh;
+  margin: 2vh;
+  color:rgb(45, 185, 45);
+}
 
 .react-chatbot-kit-chat-container {
   min-width: 80%;
@@ -131,6 +176,7 @@ html,body{
   font-size: 3.5vh;
   border-radius: 0px;
   background-color: var(--header-primary);
+  /* background-image: linear-gradient(var(--header-primary), var(--chat-background)); */
   color: var(--header-text-primary);
   /* text-shadow: 1px 1px 4px var(--color-primary); */
 }
@@ -166,6 +212,15 @@ html,body{
   border-left: 8px solid var(--userbox-background-primary)
 }
 
+.react-chatbot-kit-chat-bot-avatar-container{
+  background-color: var(--header-primary);
+  border: 1.5px solid var(--color-primary);
+}
+.react-chatbot-kit-chat-bot-avatar-letter{
+  color: var(--header-text-primary)
+}
+
+
 .react-chatbot-kit-chat-input-form{
   min-height: 8vh;
 }
@@ -196,6 +251,17 @@ html,body{
     left: 91%;
   }
   
+  .mic-container{
+    position: absolute;
+    top: 96%;
+    left: 72%;
+  }
+  .is-listening{
+    height: 16vh;
+    top: 92%;
+    color: rgb(45, 185, 45);
+  }
+  
   .react-chatbot-kit-chat-container {
     min-width: 100%;
   }
@@ -213,6 +279,10 @@ html,body{
   
   .react-chatbot-kit-chat-bot-message,.react-chatbot-kit-user-chat-message{
     font-size: 2.5vh;
+  }
+
+  .react-chatbot-kit-chat-bot-avatar-container{
+    background-color: var(--header-primary)
   }
 
   .react-chatbot-kit-chat-input-container{

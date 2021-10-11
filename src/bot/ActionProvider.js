@@ -20,9 +20,9 @@ class ActionProvider {
 
   async handleQuery(msg) {
     
-    this.updateChatbotState(
-      this.createChatbotMessage("Getting From the Database...")
-    );
+    // this.updateChatbotState(
+    //   this.createChatbotMessage("Getting From the Database...")
+    // );
     
     await axios
       .post("http://localhost:8000/parse_query", {
