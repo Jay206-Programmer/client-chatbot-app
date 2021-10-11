@@ -111,7 +111,7 @@ html,body{
 }
 
 .mic-container{
-  position: absolute;
+  position: fixed;
   top: 96%;
   right: 100px;
   transform: translate(-50%, -50%);
