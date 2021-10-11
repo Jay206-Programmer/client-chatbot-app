@@ -112,9 +112,10 @@ html,body{
 
 .mic-container{
   position: fixed;
-  top: 96%;
-  right: 100px;
-  transform: translate(-50%, -50%);
+  /* top: 96%; */
+  bottom: 0px;
+  right: 110px;
+  /* transform: translate(-50%, -50%); */
   z-index: 100;
   transition: height 0.2s ease;
   display: flex;
@@ -126,10 +127,11 @@ html,body{
 .mic-button{
   border: None;
   background-color: transparent;
-  font-size: 6vh;
+  font-size: 5vh;
   transition: color 0.2s linear;
   color: var(--header-text-primary);
   cursor: pointer;
+  margin: 0.5vh 0vh;
 }
 .mic-button:hover{
   color: var(--color-primary);
@@ -146,7 +148,7 @@ html,body{
 }
 .is-listening{
   height: 16vh;
-  top: 92%;
+  bottom: 0px;
   color: rgb(45, 185, 45);
 }
 .mic-is-listening{
@@ -253,12 +255,12 @@ html,body{
   
   .mic-container{
     position: absolute;
-    top: 96%;
-    left: 72%;
+    /* top: 96%; */
+    left: 70%;
   }
   .is-listening{
     height: 16vh;
-    top: 92%;
+    /* top: 92%; */
     color: rgb(45, 185, 45);
   }
   
