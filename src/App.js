@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import classNames from "classnames"
 
 import Chatbot from "react-chatbot-kit";
