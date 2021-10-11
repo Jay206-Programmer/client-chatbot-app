@@ -254,7 +254,7 @@ html,body{
   }
   
   .mic-container{
-    position: absolute;
+    position: fixed;
     /* top: 96%; */
     left: 70%;
   }
