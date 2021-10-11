@@ -16,7 +16,7 @@ function App() {
             <img src={cb_logo} alt="" width="50%" />
           </div> */}
           <div>
-            <h3>Database Assistant</h3>
+            <h3>Allegro Assistant</h3>
           </div>
 
         </div>
@@ -26,7 +26,7 @@ function App() {
         config={config}
         messageParser={MessageParser}
         actionProvider={ActionProvider}
-        headerText="Database Assistant"
+        headerText="Allegro Assistant"
       />
       {/* </header> */}
     </div>
