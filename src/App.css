@@ -21,7 +21,8 @@ body{
   --chat-text-primary: #eff4f7;
   --chat-background: #0d1117;
   --header-primary: #161b22;
-  --header-text-primary: #8fc7ff;
+  /* --header-text-primary: #75aee7; */
+  --header-text-primary: #b4bac3;
   --sidebar-text: #000;
   --input-background: #0d1117;
   --input-text-primary: #c9d1d9;
@@ -59,6 +60,16 @@ html,body{
 }
 .image-container > img{
   color: var(--chat-text-primary);
+}
+
+.allegro-logo{
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  width: 30vw;
+  height: 14vh;
 }
 
 .intro-container{

@@ -4,7 +4,7 @@ import classNames from "classnames"
 import Chatbot from "react-chatbot-kit";
 import "react-chatbot-kit/build/main.css";
 import "./App.css";
-// import cb_logo from "./1540869642.png";
+import cb_logo from "./Allegro-MicroSystems-H-Tagline-TM-CMYK.jpg";
 
 import config from "./bot/config.js";
 import MessageParser from "./bot/MessageParser.js";
@@ -25,9 +25,9 @@ function App() {
     <div class={classNames("main-container", { dark: darkmode })}>
       <div class="sidebar">
         <div class="intro-container">
-          {/* <div class="image-container" style={}>
+          <div class="allegro-logo" >
             <img src={cb_logo} alt="" width="50%" />
-          </div> */}
+          </div>
           <div>
             <h3>AI Assistant</h3>
             <div class="intro-container-demo-text">try "<b>{demonote}</b>"</div>

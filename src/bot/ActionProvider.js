@@ -12,11 +12,18 @@ class ActionProvider {
     this.updateChatbotState(greetingMessage);
   }
 
+  warn() {
+    this.updateChatbotState(
+      this.createChatbotMessage("Empty input received!")
+    );
+  }
+
   async handleQuery(msg) {
+    
     this.updateChatbotState(
       this.createChatbotMessage("Getting From the Database...")
     );
-
+    
     await axios
       .post("http://localhost:8000/parse_query", {
         sentence: msg,
@@ -33,6 +40,9 @@ class ActionProvider {
         }
       })
       .catch((err) => {
+        this.updateChatbotState(
+          this.createChatbotMessage("Something went wrong! Please try again.")
+        );
         console.log(err);
       });
   }

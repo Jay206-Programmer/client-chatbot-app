@@ -5,13 +5,14 @@ class MessageParser {
   }
 
   parse(message) {
-    const lowerCaseMessage = message.toLowerCase()
-    
+    const lowerCaseMessage = message.toLowerCase();
+
     if (lowerCaseMessage.includes("hello")) {
-      this.actionProvider.greet()
-    }
-    else {
-      this.actionProvider.handleQuery(lowerCaseMessage)
+      this.actionProvider.greet();
+    } else if (lowerCaseMessage.trim() === "") {
+      this.actionProvider.warn();
+    } else {
+      this.actionProvider.handleQuery(lowerCaseMessage);
     }
   }
 }
