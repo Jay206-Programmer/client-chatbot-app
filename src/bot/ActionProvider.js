@@ -8,7 +8,7 @@ class ActionProvider {
   }
 
   greet() {
-    const greetingMessage = this.createChatbotMessage("Hi, friend.");
+    const greetingMessage = this.createChatbotMessage("Hey");
     this.updateChatbotState(greetingMessage);
   }
 
