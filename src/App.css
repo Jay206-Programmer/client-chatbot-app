@@ -206,6 +206,7 @@ html,body{
   /* background-image: linear-gradient(var(--header-primary), var(--chat-background)); */
   color: var(--header-text-primary);
   /* text-shadow: 1px 1px 4px var(--color-primary); */
+  /* opacity: 0.1 */
 }
 
 .react-chatbot-kit-chat-message-container{

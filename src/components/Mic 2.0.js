@@ -25,11 +25,12 @@ export default function Mic() {
       SpeechRecognition.startListening({ continuous: true, language: "en-US" });
     } else {
       SpeechRecognition.stopListening();
+      console.log(transcript)
       resetTranscript();
     }
   };
   const handleCancelNote = () => {
-    SpeechRecognition.abortListening();
+    SpeechRecognition.stopListening();
     resetTranscript();
   };
 
