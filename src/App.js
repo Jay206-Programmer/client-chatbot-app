@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import classNames from "classnames";
 
-import {Chatbot, createClientMessage} from "react-chatbot-kit";
+import {
+  Chatbot,
+  createClientMessage,
+  createChatBotMessage,
+} from "react-chatbot-kit";
 import "react-chatbot-kit/build/main.css";
 import "./App.css";
 import cb_logo from "./Allegro-MicroSystems-H-Tagline-TM-CMYK.jpg";
@@ -38,6 +42,7 @@ function App() {
   const [darkmode, setDarkMode] = useState(false);
 
   const [note, setNote] = useState(null);
+  const [msgstate, setMsgState] = useState([]);
 
   useEffect(() => {
     handleListen();
@@ -76,9 +81,13 @@ function App() {
   const handleSaveNote = () => {
     setListening(!islistening);
     if (!islistening) {
-      // let ap = new ActionProvider();
+      let ap = new ActionProvider(
+        createChatBotMessage,
+        setMsgState,
+        createClientMessage
+      );
       // ap.userMessage(note);
-      // ap.speechRecognizeInput(note);
+      ap.speechRecognizeInput(note);
       setNote("");
     }
   };
@@ -92,6 +101,15 @@ function App() {
     return false;
   };
 
+  const saveMessages = (messages, HTMLString) => {
+    localStorage.setItem("chat_messages", JSON.stringify(messages));
+  };
+
+  const loadMessages = () => {
+    const messages = JSON.parse(localStorage.getItem("chat_messages"));
+    return messages;
+  };
+  
   return (
     <div class={classNames("main-container", { dark: darkmode })}>
       <div class="sidebar">
@@ -118,6 +136,8 @@ function App() {
         actionProvider={ActionProvider}
         headerText="Allegro Assistant"
         validator={validator}
+        messageHistory={loadMessages()}
+        saveMessages={saveMessages}
       />
       {islistening && <div className="speech-rec-div">{note}</div>}
       <div
