@@ -282,6 +282,9 @@ html,body{
     /* top: 96%; */
     left: 70%;
   }
+  .mic-button:hover{
+    color: var(--color-primary);
+  }
   .is-listening{
     height: 16vh;
     /* top: 92%; */
