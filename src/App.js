@@ -17,15 +17,6 @@ import config from "./bot/config.js";
 import MessageParser from "./bot/MessageParser.js";
 import ActionProvider from "./bot/ActionProvider.js";
 
-// ? Mic
-const SpeechRecognition =
-  window.SpeechRecognition || window.webkitSpeechRecognition;
-const mic = new SpeechRecognition();
-
-mic.continuous = true;
-mic.interimResults = true;
-mic.lang = "en-US";
-
 function App() {
   // ? Demo messages
   var demoMessages = [
@@ -37,76 +28,24 @@ function App() {
     demoMessages[Math.floor(Math.random() * demoMessages.length)];
 
   // ? States
-  const [islistening, setListening] = useState(false);
   const [demonote, setDemoNote] = useState(getDemoMsg);
   const [darkmode, setDarkMode] = useState(false);
-
-  const [note, setNote] = useState(null);
   const [msgstate, setMsgState] = useState([]);
 
-  useEffect(() => {
-    handleListen();
-  }, [islistening]);
-
-  const handleListen = () => {
-    if (islistening) {
-      mic.start();
-      mic.onend = () => {
-        // console.log("continue..");
-        mic.start();
-      };
-    } else {
-      mic.stop();
-      mic.onend = () => {
-        // console.log("Stopped Mic on Click");
-      };
-    }
-    mic.onstart = () => {
-      // console.log("Mics on");
-    };
-
-    mic.onresult = (event) => {
-      const transcript = Array.from(event.results)
-        .map((result) => result[0])
-        .map((result) => result.transcript)
-        .join("");
-      // console.log(transcript);
-      setNote(transcript);
-      mic.onerror = (event) => {
-        console.log(event.error);
-      };
-    };
-  };
-
-  const handleSaveNote = () => {
-    setListening(!islistening);
-    if (!islistening) {
-      // let ap = new ActionProvider(
-      //   createChatBotMessage,
-      //   setMsgState,
-      //   createClientMessage
-      // );
-      // // ap.userMessage(note);
-      // ap.speechRecognizeInput(note);
-      setNote("");
-    }
-  };
-  const handleCancelNote = () => {
-    setListening(!islistening);
-    setNote("");
-  };
-
+  
   const validator = (input) => {
-    if (input.length > 1 && !islistening) return true;
+    if (input.length > 1) return true;
     return false;
   };
 
   const saveMessages = (messages, HTMLString) => {
+    console.log(messages)
     localStorage.setItem("chat_messages", JSON.stringify(messages));
   };
 
-  const loadMessages = () => {
-    const messages = JSON.parse(localStorage.getItem("chat_messages"));
+  const loadMessages = async () => {
+    const messages = await JSON.parse(localStorage.getItem("chat_messages"));
+    console.log(messages)
     return messages;
   };
 
@@ -139,27 +78,6 @@ function App() {
         messageHistory={loadMessages()}
         saveMessages={saveMessages}
       />
-      {islistening && <div className="speech-rec-div">{note}</div>}
-      <div
-        className={classNames("mic-container", { "is-listening": islistening })}
-      >
-        {islistening && (
-          <button
-            className={classNames("cross-button")}
-            onClick={handleCancelNote}
-          >
-            ❌
-          </button>
-        )}
-        <button
-          className={classNames("mic-button", {
-            "mic-is-listening": islistening,
-          })}
-          onClick={handleSaveNote}
-        >
-          {!islistening ? <FontAwesomeIcon icon={faMicrophone} /> : "✔"}
-        </button>
-      </div>
       {/* </header> */}
     </div>
   );
