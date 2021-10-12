@@ -1,4 +1,6 @@
-// * CSS
+// * CSS 
+// ! ORDERING IS IMPORTANT
+import "react-chatbot-kit/build/main.css";
 import "./App.css";
 
 // * INBUILT MODULES
@@ -8,7 +10,6 @@ import classNames from "classnames";
 
 // * CHATBOT COMPONENTS
 import { Chatbot } from "react-chatbot-kit";
-import "react-chatbot-kit/build/main.css";
 import config from "./bot/config.js";
 import MessageParser from "./bot/MessageParser.js";
 import ActionProvider from "./bot/ActionProvider.js";
@@ -20,8 +21,7 @@ import Mic from "./components/Mic";
 function App() {
   // ? States
   const [darkmode, setDarkMode] = useState(false);
-  const [msgstate, setMsgState] = useState([]);
-
+  
   const validator = (input) => {
     if (input.length > 1) return true;
     return false;
@@ -39,9 +39,9 @@ function App() {
   };
 
   return (
-    <div class={classNames("main-container", { dark: darkmode })}>
-      {/* DARK MODE BUTTON */}
-      <button class="theme-button" onClick={() => setDarkMode(!darkmode)}>
+    <div className={classNames("main-container", { dark: darkmode })}>
+      {/* THEME BUTTON */}
+      <button className="theme-button" onClick={() => setDarkMode(!darkmode)}>
         {!darkmode ? "🌞" : "🌙"}
       </button>
 
