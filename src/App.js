@@ -81,13 +81,13 @@ function App() {
   const handleSaveNote = () => {
     setListening(!islistening);
     if (!islistening) {
-      let ap = new ActionProvider(
-        createChatBotMessage,
-        setMsgState,
-        createClientMessage
-      );
-      // ap.userMessage(note);
-      ap.speechRecognizeInput(note);
+      // let ap = new ActionProvider(
+      //   createChatBotMessage,
+      //   setMsgState,
+      //   createClientMessage
+      // );
+      // // ap.userMessage(note);
+      // ap.speechRecognizeInput(note);
       setNote("");
     }
   };
@@ -109,7 +109,7 @@ function App() {
     const messages = JSON.parse(localStorage.getItem("chat_messages"));
     return messages;
   };
-  
+
   return (
     <div class={classNames("main-container", { dark: darkmode })}>
       <div class="sidebar">
