@@ -16,7 +16,8 @@ import ActionProvider from "./bot/ActionProvider.js";
 
 // * CUSTOM COMPONENTS
 import Sidebar from "./components/Sidebar";
-import Mic from "./components/Mic";
+// import Mic from "./components/Mic";
+import Mic from "./components/Mic 2.0";
 
 function App() {
   // ? States

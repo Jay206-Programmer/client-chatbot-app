@@ -30,11 +30,9 @@ export default function Mic() {
       };
     } else {
       mic.stop();
-      mic.onend = () => {
-      };
+      mic.onend = () => {};
     }
-    mic.onstart = () => {
-    };
+    mic.onstart = () => {};
 
     mic.onresult = (event) => {
       const transcript = Array.from(event.results)
