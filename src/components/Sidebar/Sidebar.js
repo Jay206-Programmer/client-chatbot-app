@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import cb_logo from "../Allegro-MicroSystems-H-Tagline-TM-CMYK.jpg";
+import cb_logo from "../../Images/Allegro-MicroSystems-H-Tagline-TM-CMYK.jpg";
 
 export default function Sidebar() {
   // ? Demo messages

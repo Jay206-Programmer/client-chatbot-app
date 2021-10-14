@@ -15,9 +15,8 @@ import MessageParser from "./bot/MessageParser.js";
 import ActionProvider from "./bot/ActionProvider.js";
 
 // * CUSTOM COMPONENTS
-import Sidebar from "./components/Sidebar";
-// import Mic from "./components/Mic";
-import Mic from "./components/Mic 2.0";
+import Sidebar from "./components/Sidebar/Sidebar";
+import Mic from "./components/Mic/Mic 2.0";
 
 function App() {
   // ? States
@@ -29,13 +28,11 @@ function App() {
   };
 
   const saveMessages = (messages, HTMLString) => {
-    console.log(messages);
     localStorage.setItem("chat_messages", JSON.stringify(messages));
   };
 
   const loadMessages = async () => {
     const messages = await JSON.parse(localStorage.getItem("chat_messages"));
-    console.log(messages);
     return messages;
   };
 

@@ -27,9 +27,27 @@ class ActionProvider {
       })
       .then((result) => {
         if (result.data.status_code == 200) {
-          const Message = this.createChatbotMessage(result.data.message);
-          this.updateChatbotState(Message);
+          // * Successful fetch
+          msg = result.data.message;
+          if (result.data.status === 0) {
+            // * Results from NLP model
+            const Message = this.createChatbotMessage(msg);
+            this.updateChatbotState(Message);
+          } else {
+            // * Predefined Update Message
+            var msg_arr = msg.split(";")
+            this.setState(state => ({...state, update_arr: msg_arr}))
+            const Message = this.createChatbotMessage(
+              "Heres your update...",
+              {
+                withAvatar: true,
+                widget: 'Updates',
+              }
+            );
+            this.updateChatbotState(Message);
+          }
         } else {
+          // * Failed To Fetch
           const Message = this.createChatbotMessage(
             "Failed to fetch the data, please try again!"
           );

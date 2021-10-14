@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import classNames from "classnames";
+
+import "./Mic.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
@@ -25,7 +27,7 @@ export default function Mic() {
       SpeechRecognition.startListening({ continuous: true, language: "en-US" });
     } else {
       SpeechRecognition.stopListening();
-      console.log(transcript)
+      console.log(transcript);
       resetTranscript();
     }
   };
