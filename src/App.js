@@ -40,6 +40,7 @@ function App() {
     <div className={classNames("main-container", { dark: darkmode })}>
       {/* THEME BUTTON */}
       <button className="theme-button" onClick={() => setDarkMode(!darkmode)}>
+        13°{' '}
         {!darkmode ? "🌞" : "🌙"}
       </button>
 

@@ -105,6 +105,19 @@ body {
   font-style: italic;
 }
 
+.date {
+  position: absolute;
+  top: 96%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 1.25vw;
+  text-align: center;
+}
+
+
 .theme-button {
   position: absolute;
   top: 5%;
@@ -113,7 +126,13 @@ body {
   z-index: 100;
   border: None;
   background-color: transparent;
-  font-size: 20px;
+  font-size: 19px;
+  display: flex;
+  flex-direction: column;
+  width: 65px;
+  color: var(--header-text-primary);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 200;
 }
 
 .react-chatbot-kit-chat-container {
@@ -216,7 +235,7 @@ body {
   }
 
   .theme-button {
-    left: 91%;
+    left: 89%;
   }
 
   .react-chatbot-kit-chat-container {
@@ -228,6 +247,10 @@ body {
     color: var(--sidebar-text);
     border-radius: 0px 0px 45px 45px;
     font-size: 3vh;
+  }
+
+  .theme-button{
+    color: var(--sidebar-text);
   }
 
   .react-chatbot-kit-chat-input {

@@ -14,6 +14,12 @@ export default function Sidebar() {
 
   const [demonote, setDemoNote] = useState(getDemoMsg);
 
+  const getDate = () => {
+    const today = new Date();
+    
+    return `${today.getMonth()} / ${today.getDate()} / ${today.getFullYear()}`
+  }
+
   return (
     <div className="sidebar">
       <div className="intro-container">
@@ -25,6 +31,7 @@ export default function Sidebar() {
           <div className="intro-container-demo-text">
             try "<b>{demonote}</b>"
           </div>
+          <div className="date">{getDate()}</div>
           {/* <button onClick={() => setDemoNote(getDemoMsg)}>another</button> */}
         </div>
       </div>

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 class ActionProvider {
+  
   constructor(createChatbotMessage, setStateFunc, createClientMessage) {
     this.createChatbotMessage = createChatbotMessage;
     this.setState = setStateFunc;
@@ -38,7 +39,7 @@ class ActionProvider {
             var msg_arr = msg.split(";")
             this.setState(state => ({...state, update_arr: msg_arr}))
             const Message = this.createChatbotMessage(
-              "Heres your update...",
+              "Here's your update...",
               {
                 withAvatar: true,
                 widget: 'Updates',
