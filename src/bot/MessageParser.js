@@ -1,3 +1,5 @@
+import {getMessageHistory} from "../utils/genstudioUtils"
+
 class MessageParser {
   constructor(actionProvider, state) {
     this.actionProvider = actionProvider;
@@ -5,7 +7,6 @@ class MessageParser {
   }
 
   parse(message) {
-    console.log(this.state)
     const lowerCaseMessage = message.toLowerCase();
 
     if (lowerCaseMessage.includes("hello")) {
@@ -13,7 +14,7 @@ class MessageParser {
     } else if (lowerCaseMessage.trim() === "") {
       this.actionProvider.warn();
     } else {
-      this.actionProvider.handleQuery(lowerCaseMessage);
+      this.actionProvider.handleQuery(getMessageHistory(this.state.messages, message));
     }
   }
 }

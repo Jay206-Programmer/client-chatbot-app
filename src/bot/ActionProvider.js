@@ -1,4 +1,6 @@
 import axios from "axios";
+import ReactMarkdown from "react-markdown";
+import React from "react";
 
 class ActionProvider {
   
@@ -6,6 +8,10 @@ class ActionProvider {
     this.createChatbotMessage = createChatbotMessage;
     this.setState = setStateFunc;
     this.createClientMessage = createClientMessage;
+  }
+
+  createChatbotMessageWithMarkdown = (message) => {
+    return this.createChatbotMessage(<ReactMarkdown>{message}</ReactMarkdown>)
   }
 
   greet() {
@@ -17,61 +23,29 @@ class ActionProvider {
     this.updateChatbotState(this.createChatbotMessage("Empty input received!"));
   }
 
-  async handleQuery(msg) {
-    // this.updateChatbotState(
-    //   this.createChatbotMessage("Getting From the Database...")
-    // );
+  async handleQuery(message_history) {
+    this.updateChatbotState(this.createChatbotMessage("Thinking 🤔..."))
 
     await axios
-      .post("http://localhost:8000/parse_query", {
-        sentence: msg,
+      .post("https://0.0.0.0:8443/generate/query", {
+        messages: message_history,
       })
       .then((result) => {
-        if (result.data.status_code == 200) {
-          // * Successful fetch
-          msg = result.data.message;
-          if (result.data.status === 0) {
-            // * Results from NLP model
-            const Message = this.createChatbotMessage(msg);
-            this.updateChatbotState(Message);
-          } else {
-            // * Predefined Update Message
-            var msg_arr = msg.split(";")
-            this.setState(state => ({...state, update_arr: msg_arr}))
-            const Message = this.createChatbotMessage(
-              "Here's your update...",
-              {
-                withAvatar: true,
-                widget: 'Updates',
-              }
-            );
-            this.updateChatbotState(Message);
-          }
-        } else {
-          // * Failed To Fetch
-          const Message = this.createChatbotMessage(
-            "Failed to fetch the data, please try again!"
-          );
-          this.updateChatbotState(Message);
-        }
+        this.setState((prevState) => ({
+          ...prevState,
+          messages: prevState.messages.slice(0, -1),
+        }));
+        const response = result.data;
+        const responseMessage = this.createChatbotMessageWithMarkdown(response.message);
+        this.updateChatbotState(responseMessage);
       })
       .catch((err) => {
         this.updateChatbotState(
-          this.createChatbotMessage("Something went wrong! Please try again.")
+          this.createChatbotMessageWithMarkdown("Something went wrong! Please try again.")
         );
         console.log(err);
       });
   }
-
-  // createClientMesssage = (message) => {
-  //   const clientMessage = {
-  //     message: message,
-  //     type: "user",
-  //     id: new Date(),
-  //   };
-
-  //   return clientMessage;
-  // };
 
   setClientMessage = (message) => {
     this.setState((prevState) => ({

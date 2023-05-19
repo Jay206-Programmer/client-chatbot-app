@@ -20,8 +20,8 @@ import Mic from "./components/Mic/Mic 2.0";
 
 function App() {
   // ? States
-  const [darkmode, setDarkMode] = useState(false);
-  
+  const [darkmode, setDarkMode] = useState(true);
+
   const validator = (input) => {
     if (input.length > 1) return true;
     return false;
@@ -40,7 +40,6 @@ function App() {
     <div className={classNames("main-container", { dark: darkmode })}>
       {/* THEME BUTTON */}
       <button className="theme-button" onClick={() => setDarkMode(!darkmode)}>
-        13° {' '}
         {!darkmode ? "🌞" : "🌙"}
       </button>
 
@@ -52,7 +51,7 @@ function App() {
         config={config}
         messageParser={MessageParser}
         actionProvider={ActionProvider}
-        headerText="Allegro Assistant"
+        headerText="GraphQL Helper"
         validator={validator}
         messageHistory={loadMessages()}
         saveMessages={saveMessages}
