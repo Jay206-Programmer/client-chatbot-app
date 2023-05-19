@@ -24,7 +24,7 @@ class ActionProvider {
   }
 
   async handleQuery(message_history) {
-    this.updateChatbotState(this.createChatbotMessage("Thinking 🤔..."))
+    this.updateChatbotState(this.createChatbotMessage("Thinking 🤔 ..."))
 
     await axios
       .post("https://0.0.0.0:8443/generate/query", {

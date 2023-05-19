@@ -25,6 +25,7 @@ body {
   --chatbot-text-primary: #fff;
   --userbox-text-primary: #585858;
   --userbox-background-primary: #f1f1f1;
+  --code-color: darkorange;
 }
 
 .dark {
@@ -39,6 +40,7 @@ body {
   --chatbot-text-primary: #000;
   --userbox-text-primary: #eff4f7;
   --userbox-background-primary: #161b22;
+  --code-color: orange;
 }
 
 html,
@@ -251,6 +253,20 @@ pre {
   margin: 15px 0px;
   color: var(--userbox-text-primary);
   overflow: scroll;
+}
+
+code:not(pre code) {
+  background-color: var(--userbox-background-primary);
+  color: var(--code-color);
+  padding: 2px 5px; 
+}
+
+li::marker {
+  content: "   👉   "; /* replaces the marker with a plus sign */
+  font-size: 20px; /* adjusts the font size of the marker */
+  margin-left: 10px; /* adds some space between the marker and the text */
+  margin-right: 10px; /* adds some space between the marker and the text */
+  vertical-align: middle; /* aligns the marker vertically with the text */
 }
 
 @media (max-width: 768px) {
